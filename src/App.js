@@ -9,13 +9,13 @@ function App() {
     <div>
       <Switch>
         <Route path='/quotes' exact>
-
+          <Quotes/>
         </Route>
         <Route path='/quotes/:quote-id'>
-          
+          <QuoteDetail/>
         </Route>
         <Route path='/quotes/new-quote'>
-          
+          <NewQuote/>
         </Route>
       </Switch>
     </div>
