@@ -8,13 +8,16 @@ function App() {
   return (
     <div>
       <Switch>
+        <Route path='/' exact>
+          <Redirect to='/quotes'/>
+        </Route>
         <Route path='/quotes' exact>
           <Quotes/>
         </Route>
         <Route path='/quotes/:quoteId'>
           <QuoteDetail/>
         </Route>
-        <Route path='/quotes/new-quote'>
+        <Route path='/new-quote' >
           <NewQuote/>
         </Route>
       </Switch>
