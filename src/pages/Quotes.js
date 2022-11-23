@@ -1,7 +1,9 @@
+import QuoteList from "../components/quotes/QuoteList";
+
 //Let's create an array of quotes to simulate some quotes. 
 //Every quote will be an object with an ID, author and the quote itself.
 const DUMMY_QUOTES = [
-    {id:'q1', author: 'Somebody', text:'Whit happens'},
+    {id:'q1', author: 'Somebody', text:'Shit happens'},
     {id:'q2', author: 'Oscar Wilde', text:'Be yourself; everyone else is already taken.'},
     {id:'q3', author: 'Frank Zappa', text:'So many books, so little time.'},
     {id:'q4', author: 'Marcus Tullius Cicero ', text:'A room without books is like a body without a soul.'},
@@ -10,7 +12,10 @@ const DUMMY_QUOTES = [
 
 const Quotes = () => {
 
-    return <h1>All quotes page</h1>
+    return <>
+                <h1>All quotes</h1>
+                <QuoteList quotes={DUMMY_QUOTES} />
+            </>
 }
 
 export default Quotes;
