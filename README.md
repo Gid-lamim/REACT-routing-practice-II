@@ -8,7 +8,28 @@ It will use routes to show a page with quotes details and a page with a form to 
 It is a project by  @Maximilian Schwarzmüller (link to the course below) 
 
 ---
+
+
 ## Quotes page
 
-![searchbar](./Pics/quotes page.png)
+![searchbar](./Pics/quotesPage.png)
 
+## Routes
+
+        <Switch>
+          <Route path='/' exact>
+            <Redirect to='/quotes'/>
+          </Route>
+          <Route path='/quotes' exact>
+            <Quotes/>
+          </Route>
+          <Route path='/quotes/:quoteId'>
+            <QuoteDetail/>
+          </Route>
+          <Route path='/new-quote' >
+            <NewQuote/>
+          </Route>
+          <Route path='*'>
+            <PageNotFound/>
+          </Route>
+        </Switch>
