@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Route, useParams } from "react-router-dom";
+import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
 //The same quotes will be created here. These quotes will be fetched from a database in a real-world project anyways.
 //Every quote will be an object with an ID, author and the quote itself.
@@ -16,11 +17,15 @@ const QuoteDetail = () => {
 
     const quote = DUMMY_QUOTES.find( quote => quote.id === params.quoteId);
 
-    console.log(quote);
+    //We also need to handle undefined inputs. In case a user manually inputs an id that doesn't exist.
+    if(!quote){
+        return <h2>Quote not found</h2>
+    }
+
     return(<Fragment>
                 <h1>Quote detail here</h1>
-
-                <p>Showing details for the quote: {params.quoteId}</p>
+                
+                <HighlightedQuote text={quote.text} author={quote.author}/>
 
                 <Route path={`/quotes/${params.quoteId}/comments`}>
                     <h1>comments here</h1>
