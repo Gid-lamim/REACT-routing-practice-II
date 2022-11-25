@@ -4,6 +4,16 @@ import { useHistory, useLocation } from 'react-router-dom';
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
+const sortQuotes = (quotes, ascending) => {
+  return quotes.sort((quoteA, quoteB) => {
+    if (ascending){
+      return quoteA.id > quoteB.id ? 1 : -1;
+    } else {
+      return quoteA.id < quoteB.id ? 1 : -1;
+    }
+  });
+};
+
 const QuoteList = (props) => {
   const history = useHistory();
   const location = useLocation();
@@ -14,7 +24,8 @@ const QuoteList = (props) => {
   //queryParams.get('sort') will return the sorting option.
   const isSortingAscending = queryParams.get('sort') === 'asc'; //this will return as false or true
 
-  console.log(queryParams.get('sort'));
+  //to get the sorted quotes we use the helper function
+  const sortedQuotes = sortQuotes(props.quotes, isSortingAscending); 
 
   const onSortingHandler = () => {
     history.push('/quotes?sort=' + (isSortingAscending? 'desc' : 'asc'));
@@ -23,10 +34,10 @@ const QuoteList = (props) => {
   return (
     <Fragment>
       <div className={classes.sorting}>
-        <button onClick={onSortingHandler}>Sort {isSortingAscending? 'descending': 'ascending'}</button>
+        <button onClick={onSortingHandler}>Sort ID {isSortingAscending? 'descending': 'ascending'}</button>
       </div>
       <ul className={classes.list}>
-        {props.quotes.map((quote) => (
+        {sortedQuotes.map((quote) => (
           <QuoteItem
             key={quote.id}
             id={quote.id}
