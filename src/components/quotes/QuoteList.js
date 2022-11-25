@@ -1,20 +1,29 @@
 import { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
 const QuoteList = (props) => {
   const history = useHistory();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  //Here we need to check whether the sorting is ascending
+  //queryParams.get('sort') will return the sorting option.
+  const isSortingAscending = queryParams.get('sort') === 'asc'; //this will return as false or true
+
+  console.log(queryParams.get('sort'));
 
   const onSortingHandler = () => {
-    history.push('/quotes?sort=asc');
+    history.push('/quotes?sort=' + (isSortingAscending? 'desc' : 'asc'));
   }
 
   return (
     <Fragment>
       <div className={classes.sorting}>
-        <button onClick={onSortingHandler}>Sort quotes</button>
+        <button onClick={onSortingHandler}>Sort {isSortingAscending? 'descending': 'ascending'}</button>
       </div>
       <ul className={classes.list}>
         {props.quotes.map((quote) => (
