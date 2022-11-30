@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Route, useParams } from "react-router-dom";
+import { Link, Route, useParams } from "react-router-dom";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
 //The same quotes will be created here. These quotes will be fetched from a database in a real-world project anyways.
@@ -27,6 +27,13 @@ const QuoteDetail = () => {
                 
                 <HighlightedQuote text={quote.text} author={quote.author}/>
 
+                <div className="centered">
+                    <Route  path={`/quotes/${params.quoteId}`} exact>
+                        <Link className="btn--flat" to={`/quotes/${params.quoteId}/comments`}>
+                            Load comments
+                        </Link>
+                    </Route>
+                </div>
                 <Route path={`/quotes/${params.quoteId}/comments`}>
                     <h1>comments here</h1>
                     <p>Showing comments for the quote with id: {params.quoteId}</p>
