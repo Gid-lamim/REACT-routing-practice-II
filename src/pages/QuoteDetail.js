@@ -29,6 +29,7 @@ const QuoteDetail = () => {
 
                 <Route path={`/quotes/${params.quoteId}/comments`}>
                     <h1>comments here</h1>
+                    <p>Showing comments for the quote with id: {params.quoteId}</p>
                 </Route>   
            </Fragment>);
 }
